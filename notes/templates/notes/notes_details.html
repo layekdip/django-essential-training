@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{note.title}}</title>
-</head>
-<body>
-  <h1>{{note.title}}</h1>
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="border round">
+  <h1 class="my-5">{{note.title}}</h1>
   <p>
     {{note.text}}
     <br></br>
     {{note.created}}
   </p>
-</body>
-</html>
+</div>
+{% endblock %}
