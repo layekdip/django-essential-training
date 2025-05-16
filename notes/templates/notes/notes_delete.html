@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    <p>
+        Are you sure you want to delete notes - "{{notes.title}}" ?
+    </p>
+    <p>
+        This action cannot be undone...!!!
+    </p>
+    <button type="submit" class="btn btn-danger my-5" value="Confirm">Delete</button>
+    {{form}}
+</form>
+{% endblock %}
