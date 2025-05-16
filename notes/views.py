@@ -1,3 +1,5 @@
+from jupyter_client.localinterfaces import is_public_ip
+
 from .forms import NotesForm
 from .models import Notes
 from django.shortcuts import get_object_or_404
@@ -54,9 +56,15 @@ class NotesListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return self.request.user.notes.all()
 
-class NoteDetailView(DetailView):
+class NoteDetailView(LoginRequiredMixin, DetailView):
     model = Notes
     context_object_name = "note"
+    template_name = 'notes/notes_details.html'
+
+class NotePublicDetailView(DetailView):
+    model = Notes
+    context_object_name = "note"
+    queryset = Notes.objects.filter(is_public=True)
     template_name = 'notes/notes_details.html'
 
 class PopularNotesListView(ListView):
